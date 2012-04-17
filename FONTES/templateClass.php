@@ -193,6 +193,7 @@
 
   class checkOrRadio {
     private $rstResultSet  = 0;
+    public  $strType       = 'radio';
     private $strHtmlReturn = '';
     public  $strName;
     public  $strLabel;
@@ -205,23 +206,27 @@
     }
 
     public function renderizaCheckOrRadio(){
-      $this->strHtmlReturn  = "<div class=\"clearfix\">";
-      $this->strHtmlReturn .= "<label id=\"optionsCheckboxes\">$this->strLabel</label>";
-      $this->strHtmlReturn .= "<div class=\"input box-checkOrRadio\">";
+
+      $this->strType = ($this->strType == 'radio' || $this->strType == 'checkbox') ? $this->strType : 'radio';
+
+      $this->strHtmlReturn  = "<fieldset><div class=\"clearfix\">";
+      $this->strHtmlReturn .= "<label id=\"$this->strName\">List of options</label>";
+      $this->strHtmlReturn .= "<div class=\"input\" style=\"margin-left:40px\">";
       $this->strHtmlReturn .= "<ul class=\"inputs-list\">";
 
       if(!is_array($this->rstResultSet)) {
         while ($row = $this->rstResultSet->fetch_row()) {
           $row[1]               = isset($row[1]) && !empty($row[1]) ? $row[1] : $row[0];
-          $this->strHtmlReturn .= "<li><label><input type=\"checkbox\" value=\"opt$row[0]\" name=\"opt$row[0]\"><span>$row[1]</span></label></li>";
+          $this->strHtmlReturn .= "<li><label><input type=\"$this->strType\" value=\"opt$row[0]\" name=\"$this->strName\"><span>$row[1]</span></label></li>";
         }
       }
       else {
         foreach ($this->rstResultSet as $key => $value) {
-          $this->strHtmlReturn .= "<li><label><input type=\"checkbox\" value=\"opt$key\" name=\"opt$key\"><span>$value</span></label></li>";
+          $this->strHtmlReturn .= "<li><label><input type=\"$this->strType\" value=\"opt$key\" name=\"$this->strName\"><span>$value</span></label></li>";
         }
       }
-      $this->strHtmlReturn .= "</ul></div></div>";
+      $this->strHtmlReturn .= "</ul></div></div></fieldset>";
+      return $this->strHtmlReturn;
     }
   }
 

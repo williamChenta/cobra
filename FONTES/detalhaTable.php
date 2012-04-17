@@ -42,7 +42,8 @@
   $objTextArea->strChangeEvent   = 'alert(\'alterou!!!\')';
 
   $objCheck = new checkOrRadio(array('1'=>'checkbox1','2'=>'checkbox2','3'=>'checkbox3'));
-  $objCheck->strLabel = 'Exemplo de checkbox';
+  $objCheck->strName  = 'sexo';
+  $objCheck->strType  = 'checkbox';
 
 
 
