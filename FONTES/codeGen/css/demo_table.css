@@ -23,7 +23,7 @@
  *     ensure that you either have "example_alt_pagination" as a body class name, or better yet,
  *     modify that selector.
  *   Note that the path used for Images is relative. All images are by default located in
- *     ../img/tables/ - relative to this CSS file.
+ *     ../images/ - relative to this CSS file.
 */
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -154,6 +154,7 @@ table.display thead th {
   border-bottom: 1px solid black;
   font-weight: bold;
   cursor: pointer;
+  * cursor: hand;
 }
 
 table.display tfoot th {
@@ -264,6 +265,7 @@ tr.even {
 
 .dataTables_scrollBody {
   *margin-top: -1px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .top, .bottom {
